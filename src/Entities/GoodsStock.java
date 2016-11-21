@@ -1,12 +1,10 @@
 package Entities;
 
-import java.util.UUID;
-
 /**
  * Created by Scala on 20.11.2016.
  */
 public class GoodsStock {
-    private UUID id;
+    private int id;
     private String name;
     private TypeGoods typeGoods;
     private int sum;
@@ -15,18 +13,18 @@ public class GoodsStock {
         PRODUCTS , CLOTHES , ELECTRONICS;
     }
 
-    public GoodsStock(UUID id, String name, TypeGoods typeGoods, int sum) {
+    public GoodsStock(int id, String name, TypeGoods typeGoods, int sum) {
         this.setId(id);
         this.setName(name);
         this.setTypeGoods(typeGoods);
         this.setSum(sum);
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
