@@ -1,5 +1,7 @@
 package Entities;
 
+import java.util.Date;
+
 /**
  * Created by Scala on 20.11.2016.
  */
@@ -8,6 +10,7 @@ public class GoodsStock {
     private String name;
     private TypeGoods typeGoods;
     private int sum;
+    private Date date;
 
     public enum TypeGoods {
         PRODUCTS , CLOTHES , ELECTRONICS;
@@ -18,6 +21,14 @@ public class GoodsStock {
         this.setName(name);
         this.setTypeGoods(typeGoods);
         this.setSum(sum);
+    }
+
+    public GoodsStock(int id, String name, TypeGoods typeGoods, int sum, Date date) {
+        this.setId(id);
+        this.setName(name);
+        this.setTypeGoods(typeGoods);
+        this.setSum(sum);
+        this.setDate(date);
     }
 
     public int getId() {
@@ -50,6 +61,14 @@ public class GoodsStock {
 
     public void setTypeGoods(TypeGoods typeGoods) {
         this.typeGoods = typeGoods;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override

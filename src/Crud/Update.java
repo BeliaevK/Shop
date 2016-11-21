@@ -24,10 +24,22 @@ public class Update {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Укажите идентификатор для редактирования записи");
         int recordField = Integer.parseInt(reader.readLine());
+
         for (int i = 0; i < goodsStockArrayList.size(); i++) {
-            if (recordField == goodsStockArrayList.get(i).getId())
-                goodsStockArrayList.remove(i);
+            if (recordField == goodsStockArrayList.get(i).getId()){
+                System.out.println("Введите: Наименование | Тип");
+                String[] updateField = reader.readLine().split("\\|");
+                if(checkStringFieldsIsCorrect(updateField)){
+                    goodsStockArrayList.add(i,updateField[0],GoodsStock.TypeGoods.valueOf(updateField[1]),goodsStockArrayList.get(i).getSum());
+                }
+            }
         }
         return goodsStockArrayList;
+    }
+
+    private static boolean checkStringFieldsIsCorrect(String[] readLine) {
+        boolean isCorrect = false;
+        if (!readLine[0].equals("") | !readLine[1].equals("")) isCorrect = true;
+        return isCorrect;
     }
 }

@@ -20,14 +20,14 @@ public class Initialization {
 
     public static ArrayList<GoodsStock> initShopGoodsStockArray() {
         ArrayList<GoodsStock> shopGoodsStockArray = new ArrayList<>();
-        shopGoodsStockArray.add(new GoodsStock(UUID.randomUUID(), "Хлеб" , GoodsStock.TypeGoods.PRODUCTS,20));
-        shopGoodsStockArray.add(new GoodsStock(UUID.randomUUID(), "Молоко" , GoodsStock.TypeGoods.PRODUCTS,30));
-        shopGoodsStockArray.add(new GoodsStock(UUID.randomUUID(), "Куртка" , GoodsStock.TypeGoods.CLOTHES,5500));
-        shopGoodsStockArray.add(new GoodsStock(UUID.randomUUID(), "Nintendo" , GoodsStock.TypeGoods.ELECTRONICS,3600));
-        shopGoodsStockArray.add(new GoodsStock(UUID.randomUUID(), "Sony PlayStation" , GoodsStock.TypeGoods.ELECTRONICS,30000));
-        shopGoodsStockArray.add(new GoodsStock(UUID.randomUUID(), "Пицца" , GoodsStock.TypeGoods.PRODUCTS,500));
-        shopGoodsStockArray.add(new GoodsStock(UUID.randomUUID(), "Футболка" , GoodsStock.TypeGoods.CLOTHES,400));
-        shopGoodsStockArray.add(new GoodsStock(UUID.randomUUID(), "Джинсы" , GoodsStock.TypeGoods.CLOTHES,1250));
+        shopGoodsStockArray.add(new GoodsStock(1, "Хлеб" , GoodsStock.TypeGoods.PRODUCTS,20));
+        shopGoodsStockArray.add(new GoodsStock(2, "Молоко" , GoodsStock.TypeGoods.PRODUCTS,30));
+        shopGoodsStockArray.add(new GoodsStock(3, "Куртка" , GoodsStock.TypeGoods.CLOTHES,5500));
+        shopGoodsStockArray.add(new GoodsStock(4, "Nintendo" , GoodsStock.TypeGoods.ELECTRONICS,3600));
+        shopGoodsStockArray.add(new GoodsStock(5, "Sony PlayStation" , GoodsStock.TypeGoods.ELECTRONICS,30000));
+        shopGoodsStockArray.add(new GoodsStock(6, "Пицца" , GoodsStock.TypeGoods.PRODUCTS,500));
+        shopGoodsStockArray.add(new GoodsStock(7, "Футболка" , GoodsStock.TypeGoods.CLOTHES,400));
+        shopGoodsStockArray.add(new GoodsStock(8, "Джинсы" , GoodsStock.TypeGoods.CLOTHES,1250));
         return shopGoodsStockArray;
     }
 
