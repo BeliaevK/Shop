@@ -8,7 +8,7 @@ import Entities.GoodsStock;
  */
 public class ProductsFactory implements AbstractGoodsFactory {
     @Override
-    public AbstractGoods createGoods(GoodsStock.TypeGoods typeGoods, GoodsStock.CategoriesGoods categoriesGoods) {
+    public AbstractGoods createGoods(GoodsStock.CategoriesGoods categoriesGoods) {
         return null;
     }
 }
