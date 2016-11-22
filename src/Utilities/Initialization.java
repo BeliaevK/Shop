@@ -20,14 +20,15 @@ public class Initialization {
 
     public static ArrayList<GoodsStock> initShopGoodsStockArray() {
         ArrayList<GoodsStock> shopGoodsStockArray = new ArrayList<>();
-        shopGoodsStockArray.add(new GoodsStock(1, "Хлеб" , GoodsStock.TypeGoods.PRODUCTS,20));
-        shopGoodsStockArray.add(new GoodsStock(2, "Молоко" , GoodsStock.TypeGoods.PRODUCTS,30));
-        shopGoodsStockArray.add(new GoodsStock(3, "Куртка" , GoodsStock.TypeGoods.CLOTHES,5500));
-        shopGoodsStockArray.add(new GoodsStock(4, "Nintendo" , GoodsStock.TypeGoods.ELECTRONICS,3600));
-        shopGoodsStockArray.add(new GoodsStock(5, "Sony PlayStation" , GoodsStock.TypeGoods.ELECTRONICS,30000));
-        shopGoodsStockArray.add(new GoodsStock(6, "Пицца" , GoodsStock.TypeGoods.PRODUCTS,500));
-        shopGoodsStockArray.add(new GoodsStock(7, "Футболка" , GoodsStock.TypeGoods.CLOTHES,400));
-        shopGoodsStockArray.add(new GoodsStock(8, "Джинсы" , GoodsStock.TypeGoods.CLOTHES,1250));
+        shopGoodsStockArray.add(new GoodsStock(IdGenerator.nextId(), "Батон 'Нарезной'" , GoodsStock.TypeGoods.PRODUCTS, GoodsStock.CategoriesGoods.BREAD,20));
+        shopGoodsStockArray.add(new GoodsStock(IdGenerator.nextId(), "Молоко" , GoodsStock.TypeGoods.PRODUCTS, GoodsStock.CategoriesGoods.MILK,30));
+        shopGoodsStockArray.add(new GoodsStock(IdGenerator.nextId(), "Куртка" , GoodsStock.TypeGoods.CLOTHES, GoodsStock.CategoriesGoods.OUTERWEAR,5500));
+        shopGoodsStockArray.add(new GoodsStock(IdGenerator.nextId(), "Nintendo" , GoodsStock.TypeGoods.ELECTRONICS,GoodsStock.CategoriesGoods.CONSOLE, 3600));
+        shopGoodsStockArray.add(new GoodsStock(IdGenerator.nextId(), "Sony PlayStation" , GoodsStock.TypeGoods.ELECTRONICS, GoodsStock.CategoriesGoods.CONSOLE, 30000));
+        shopGoodsStockArray.add(new GoodsStock(IdGenerator.nextId(), "Пицца 'Пепперони'" , GoodsStock.TypeGoods.PRODUCTS, GoodsStock.CategoriesGoods.PIZZA,500));
+        shopGoodsStockArray.add(new GoodsStock(IdGenerator.nextId(), "Футболка" , GoodsStock.TypeGoods.CLOTHES, GoodsStock.CategoriesGoods.TSHIRT,400));
+        shopGoodsStockArray.add(new GoodsStock(IdGenerator.nextId(), "Шорты" , GoodsStock.TypeGoods.CLOTHES, GoodsStock.CategoriesGoods.SHORTS,1250));
+        shopGoodsStockArray.add(new GoodsStock(IdGenerator.nextId(), "Телевизор" , GoodsStock.TypeGoods.CLOTHES, GoodsStock.CategoriesGoods.TV,1250));
         return shopGoodsStockArray;
     }
 

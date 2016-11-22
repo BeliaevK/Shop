@@ -1,26 +1,47 @@
 package Entities;
 
+import Utilities.IdGenerator;
+
 /**
  * Created by Scala on 21.11.2016.
  */
 public abstract class AbstractGoods {
     private int id;
-    protected Enum cost;
-    protected String name;
-    private Date payDate;
+    private String name;
+    private Enum categories;
 
 
-    public AbstractPurchases(Enum cost) {
-        id = IdGenerator.nextId();
-        this.cost = cost;
-        payDate = new Date();
+
+    public AbstractGoods(Enum categories) {
+        setId(IdGenerator.nextId());
+        this.setCategories(categories);
     }
 
     public void toUse() {
-        System.out.println("I'm a " + name + " and I'm very useful.");
+        System.out.println("I'm a " + getName() + " and I'm very useful.");
     }
 
-    public Enum getCost() {
-        return cost;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Enum getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Enum categories) {
+        this.categories = categories;
     }
 }

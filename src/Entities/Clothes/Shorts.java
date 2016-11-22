@@ -7,8 +7,8 @@ import Entities.AbstractGoods;
  */
 public class Shorts extends AbstractGoods {
 
-    public Shorts(Enum cost) {
-        super(cost);
-        name = "Shorts";
+    public Shorts(Enum categories) {
+        super(categories);
+        setName("Shorts");
     }
 }

@@ -1,6 +1,7 @@
 package Crud;
 
 import Entities.GoodsStock;
+import Utilities.IdGenerator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,11 +24,11 @@ public class Create {
 
     public ArrayList<GoodsStock> createRecord (ArrayList<GoodsStock> homeAccountingArrayList) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Создание записи: Наименование | Тип | Цена");
+        System.out.println("Создание записи: Наименование | Тип | Категория | Цена");
         String[] recordField = reader.readLine().split("\\|");
         if (checkOrderFieldsIsCorrect(recordField)) {
-            homeAccountingArrayList.add(new GoodsStock(homeAccountingArrayList.size() + 1, recordField[0],
-                    GoodsStock.TypeGoods.valueOf(recordField[1]), Integer.parseInt(recordField[2])));
+            homeAccountingArrayList.add(new GoodsStock(IdGenerator.nextId(), recordField[0],
+                    GoodsStock.TypeGoods.valueOf(recordField[1]), GoodsStock.CategoriesGoods.valueOf(recordField[2]), Integer.parseInt(recordField[3])));
         }
         else {
             System.out.println("Неверный формат записи. Пример: \n Наименование | Тип | Цена");

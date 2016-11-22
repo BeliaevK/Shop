@@ -27,10 +27,11 @@ public class Update {
 
         for (int i = 0; i < goodsStockArrayList.size(); i++) {
             if (recordField == goodsStockArrayList.get(i).getId()){
-                System.out.println("Введите: Наименование | Тип");
+                System.out.println("Введите: Наименование | Тип | Категория");
                 String[] updateField = reader.readLine().split("\\|");
                 if(checkStringFieldsIsCorrect(updateField)){
-                    goodsStockArrayList.add(i,updateField[0],GoodsStock.TypeGoods.valueOf(updateField[1]),goodsStockArrayList.get(i).getSum());
+/*                    goodsStockArrayList.add(IdGenerator.nextId(),updateField[0], GoodsStock.TypeGoods.valueOf(updateField[1]),
+                            GoodsStock.CategoriesGoods.valueOf(updateField[2]),goodsStockArrayList.get(i).getSum());*/
                 }
             }
         }
@@ -39,7 +40,7 @@ public class Update {
 
     private static boolean checkStringFieldsIsCorrect(String[] readLine) {
         boolean isCorrect = false;
-        if (!readLine[0].equals("") | !readLine[1].equals("")) isCorrect = true;
+        if (!readLine[0].equals("") | !readLine[1].equals("") | !readLine[2].equals("")) isCorrect = true;
         return isCorrect;
     }
 }
