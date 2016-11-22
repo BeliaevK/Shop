@@ -1,6 +1,7 @@
 package Crud;
 
 import Entities.GoodsStock;
+import Utilities.IdGenerator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,8 +31,8 @@ public class Update {
                 System.out.println("Введите: Наименование | Тип | Категория");
                 String[] updateField = reader.readLine().split("\\|");
                 if(checkStringFieldsIsCorrect(updateField)){
-/*                    goodsStockArrayList.add(IdGenerator.nextId(),updateField[0], GoodsStock.TypeGoods.valueOf(updateField[1]),
-                            GoodsStock.CategoriesGoods.valueOf(updateField[2]),goodsStockArrayList.get(i).getSum());*/
+                    goodsStockArrayList.add( new GoodsStock(IdGenerator.nextId(),updateField[0], GoodsStock.TypeGoods.valueOf(updateField[1]),
+                            GoodsStock.CategoriesGoods.valueOf(updateField[2]),goodsStockArrayList.get(i).getSum()));
                 }
             }
         }
