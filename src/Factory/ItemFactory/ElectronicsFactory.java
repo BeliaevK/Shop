@@ -1,6 +1,11 @@
 package Factory.ItemFactory;
 
 import Entities.AbstractGoods;
+import Entities.Clothes.Outerwear;
+import Entities.Clothes.Shorts;
+import Entities.Clothes.Tshirt;
+import Entities.Electronics.Console;
+import Entities.Electronics.Tv;
 import Entities.GoodsStock;
 
 /**
@@ -9,6 +14,11 @@ import Entities.GoodsStock;
 public class ElectronicsFactory implements AbstractGoodsFactory {
     @Override
     public AbstractGoods createGoods(GoodsStock.CategoriesGoods categoriesGoods) {
-        return null;
+        if(GoodsStock.CategoriesGoods.TV.equals(categoriesGoods))
+            return new Tv(categoriesGoods);
+        else if(GoodsStock.CategoriesGoods.CONSOLE.equals(categoriesGoods))
+            return new Console(categoriesGoods);
+        else return null;
+
     }
 }

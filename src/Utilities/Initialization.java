@@ -32,4 +32,8 @@ public class Initialization {
         return shopGoodsStockArray;
     }
 
+    public static ArrayList<GoodsStock> initBuyerGoodsStockArray() {
+        ArrayList<GoodsStock> buyerGoodsStockArray = new ArrayList<>();
+        return buyerGoodsStockArray;
+    }
 }
