@@ -1,14 +1,10 @@
 package Utilities;
 
-import Crud.Create;
-import Crud.Delete;
-import Crud.Read;
-import Crud.Update;
+import Entities.ConsoleDispatcher;
 import Entities.GoodsStock;
+import Entities.OperationDispatcher;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -25,21 +21,20 @@ public class StringReader {
     }
 
     public static ArrayList<GoodsStock> orderRead(ArrayList<GoodsStock> homeAccountingArrayList) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String readLine = reader.readLine();
+        String readLine = ConsoleDispatcher.readLine();
         if (checkOrderFieldsIsCorrect(readLine)) {
             switch (readLine) {
                 case "c":
-                    Create.getInstance().createRecord(homeAccountingArrayList);
+                    OperationDispatcher.getInstance().createRecord(homeAccountingArrayList);
                     break;
                 case "r":
-                    Read.getInstance().readRecord(homeAccountingArrayList);
+                    OperationDispatcher.getInstance().readRecord(homeAccountingArrayList);
                     break;
                 case "u":
-                    Update.getInstance().updateForIdRecord(homeAccountingArrayList);
+                    OperationDispatcher.getInstance().updateForIdRecord(homeAccountingArrayList);
                     break;
                 case "d":
-                    Delete.getInstance().deleteForIdRecord(homeAccountingArrayList);
+                    OperationDispatcher.getInstance().deleteForIdRecord(homeAccountingArrayList);
                     break;
             }
         } else {
