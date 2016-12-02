@@ -2,9 +2,7 @@ package Entities;
 
 import Utilities.IdGenerator;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -21,40 +19,62 @@ public class OperationDispatcher {
         return instance;
     }
 
-    public ArrayList<GoodsStock> createRecord (ArrayList<GoodsStock> homeAccountingArrayList) throws IOException {
+    public ArrayList<GoodsStock> createRecord(ArrayList<GoodsStock> homeAccountingArrayList) throws IOException {
         ConsoleDispatcher.sendMessage(Messages.MSG_REQUEST_PRODUCT_INFO);
         String[] recordField = ConsoleDispatcher.readLine().split("\\|");
         if (checkOrderFieldsIsCorrect(recordField)) {
             homeAccountingArrayList.add(new GoodsStock(IdGenerator.nextId(), recordField[0],
-                    GoodsStock.TypeGoods.valueOf(recordField[1]), GoodsStock.CategoriesGoods.valueOf(recordField[2]), Integer.parseInt(recordField[3])));
-        }
-        else {
-            System.out.println("Неверный формат записи. Пример: \n Наименование | Тип | Цена");
+                    GoodsStock.TypeGoods.valueOf(recordField[1]), GoodsStock.CategoriesGoods.valueOf(recordField[2]),
+                    Integer.parseInt(recordField[3])));
+        } else {
+            System.out.println("Неверный формат записи. Пример: \n Наименование | Тип | Категория | Цена");
         }
         return homeAccountingArrayList;
     }
 
-    public ArrayList<GoodsStock> deleteForIdRecord (ArrayList<GoodsStock> goodsStockArrayList) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Укажите идентификатор для удаления записи");
-        int recordField = Integer.parseInt(reader.readLine());
-        for (int i = 0; i < goodsStockArrayList.size(); i++) {
-            if (recordField == goodsStockArrayList.get(i).getId())
-                goodsStockArrayList.remove(i);
-        }
-        return goodsStockArrayList;
-    }
-
-    public ArrayList<GoodsStock> readRecord(ArrayList<GoodsStock> goodsStockArrayList) throws IOException {
-        System.out.println("Вывод списка: all - вывести все записи, ввести Id записи");
+    public void deleteForIdRecord(ArrayList<GoodsStock> shopArrayList,ArrayList<GoodsStock> basketArrayList) throws IOException {
+        System.out.println("Удаление товара: shop - в магазине, basket - из корзины");
         String recordField = ConsoleDispatcher.readLine();
         if (checkStringFieldsIsCorrect(recordField)) {
-            goodsStockArrayList.forEach(System.out::println);
+            System.out.println("Укажите идентификатор для удаления записи");
+            try {
+                int id = Integer.parseInt(ConsoleDispatcher.readLine());
+                switch (recordField) {
+                    case "shop":
+                        for (int i = 0; i < shopArrayList.size(); i++) {
+                            if (id == shopArrayList.get(i).getId())
+                                shopArrayList.remove(i);
+                        }
+                        break;
+                    case "basket":
+                        for (int i = 0; i < basketArrayList.size(); i++) {
+                            if (id == basketArrayList.get(i).getId())
+                                shopArrayList.add(basketArrayList.get(i));
+                            basketArrayList.remove(i);
+                        }
+                        break;
+                }
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                System.out.println("Неверный идентификатор");
+            }
         }
-        else {
-            System.out.println("Неверный формат записи. Пример: \n all - вывести все записи");
+    }
+
+    public void readRecord(ArrayList<GoodsStock> shopArrayList, ArrayList<GoodsStock> basketArrayList) throws IOException {
+        System.out.println("Вывод списка: shop - вывести все товары магазина, basket -  вывести все товары корзины");
+        String recordField = ConsoleDispatcher.readLine();
+        if (checkStringFieldsIsCorrect(recordField)) {
+            switch (recordField) {
+                case "shop":
+                    shopArrayList.forEach(System.out::println);
+                    break;
+                case "basket":
+                    basketArrayList.forEach(System.out::println);
+                    break;
+            }
+        } else {
+            System.out.println("Неверный формат записи. Пример: \n shop - вывести все товары магазина, basket -  вывести все товары корзины");
         }
-        return goodsStockArrayList;
     }
 
     public void findAllRecord(ArrayList<GoodsStock> goodsStockArrayList) throws IOException {
@@ -71,43 +91,56 @@ public class OperationDispatcher {
 
     private static boolean checkStringFieldsIsCorrect(String recordField) {
         boolean isCorrect = false;
-        if (recordField.equals("all")) isCorrect = true;
+        if (recordField.equals("shop") || recordField.equals("basket")) isCorrect = true;
         return isCorrect;
     }
 
     private static boolean checkIntFieldsIsCorrect(int recordField) {
         boolean isCorrect = false;
-        if (recordField == (0-Integer.MAX_VALUE)) isCorrect = true;
+        if (recordField == 0) isCorrect = true;
         return isCorrect;
     }
 
     private static boolean checkOrderFieldsIsCorrect(String[] recordField) {
         boolean isCorrect = true;
-        if (recordField.length < 3 || recordField.length > 3) isCorrect = false;
+        if (recordField.length < 4 || recordField.length > 4) isCorrect = false;
         return isCorrect;
     }
 
     public ArrayList<GoodsStock> updateForIdRecord(ArrayList<GoodsStock> goodsStockArrayList) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Укажите идентификатор для редактирования записи");
-        int recordField = Integer.parseInt(reader.readLine());
-
+        int recordField = Integer.parseInt(ConsoleDispatcher.readLine());
         for (int i = 0; i < goodsStockArrayList.size(); i++) {
-            if (recordField == goodsStockArrayList.get(i).getId()){
+            if (recordField == goodsStockArrayList.get(i).getId()) {
                 System.out.println("Введите: Наименование | Тип | Категория");
-                String[] updateField = reader.readLine().split("\\|");
-                if(checkStringUpdeteFieldsIsCorrect(updateField)){
-                    goodsStockArrayList.add( new GoodsStock(IdGenerator.nextId(),updateField[0], GoodsStock.TypeGoods.valueOf(updateField[1]),
-                            GoodsStock.CategoriesGoods.valueOf(updateField[2]),goodsStockArrayList.get(i).getSum()));
+                String[] updateField = ConsoleDispatcher.readLine().split("\\|");
+                if (checkStringUpdateFieldsIsCorrect(updateField)) {
+                    goodsStockArrayList.add(new GoodsStock(IdGenerator.nextId(), updateField[0], GoodsStock.TypeGoods.valueOf(updateField[1]),
+                            GoodsStock.CategoriesGoods.valueOf(updateField[2]), goodsStockArrayList.get(i).getSum()));
                 }
             }
         }
         return goodsStockArrayList;
     }
 
-    private static boolean checkStringUpdeteFieldsIsCorrect(String[] readLine) {
+    private static boolean checkStringUpdateFieldsIsCorrect(String[] readLine) {
         boolean isCorrect = false;
         if (!readLine[0].equals("") | !readLine[1].equals("") | !readLine[2].equals("")) isCorrect = true;
         return isCorrect;
+    }
+
+    public void buyGoods(ArrayList<GoodsStock> shopArrayList, ArrayList<GoodsStock> basketArrayList) throws IOException {
+        System.out.println("Укажите идентификатор для покупки товара");
+        try {
+            int id = Integer.parseInt(ConsoleDispatcher.readLine());
+            for (int i = 0; i < shopArrayList.size(); i++) {
+                if (id == shopArrayList.get(i).getId()) {
+                    basketArrayList.add(shopArrayList.get(i));
+                    shopArrayList.remove(i);
+                }
+            }
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            System.out.println("Неверный идентификатор");
+        }
     }
 }

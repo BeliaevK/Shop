@@ -2,8 +2,11 @@ package Utilities;
 
 import Entities.GoodsStock;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.CharBuffer;
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  * Created by Scala on 20.11.2016.
@@ -32,8 +35,25 @@ public class Initialization {
         return shopGoodsStockArray;
     }
 
-    public static ArrayList<GoodsStock> initBuyerGoodsStockArray() {
-        ArrayList<GoodsStock> buyerGoodsStockArray = new ArrayList<>();
-        return buyerGoodsStockArray;
+    public static ArrayList<GoodsStock> initBasketGoodsStockArray() {
+        ArrayList<GoodsStock> basketGoodsStockArray = new ArrayList<>();
+        return basketGoodsStockArray;
+    }
+
+    public static void readFile(ArrayList<GoodsStock> shopGoodsStockArray,ArrayList<GoodsStock> basketGoodsStockArray) throws IOException {
+        FileReader shopRead = new FileReader("shop.txt");
+        FileReader basketRead = new FileReader("basket.txt");
+        shopRead.read(CharBuffer.wrap(String.valueOf(shopGoodsStockArray)));
+        shopRead.close();
+        basketRead.read(CharBuffer.wrap(String.valueOf(shopGoodsStockArray)));
+        basketRead.close();
+    }
+    public static void writeFile(ArrayList<GoodsStock> shopGoodsStockArray,ArrayList<GoodsStock> basketGoodsStockArray) throws IOException {
+        FileWriter shopWrite = new FileWriter("shop.txt");
+       FileWriter basketWrite = new FileWriter("basket.txt");
+        shopWrite.write(String.valueOf(shopGoodsStockArray));
+        shopWrite.close();
+       basketWrite.write(String.valueOf(shopGoodsStockArray));
+        basketWrite.close();
     }
 }

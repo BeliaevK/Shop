@@ -20,33 +20,35 @@ public class StringReader {
         return instance;
     }
 
-    public static ArrayList<GoodsStock> orderRead(ArrayList<GoodsStock> homeAccountingArrayList) throws IOException {
+    public static void orderRead(ArrayList<GoodsStock> shopArrayList,ArrayList<GoodsStock> basketArrayList) throws IOException {
         String readLine = ConsoleDispatcher.readLine();
         if (checkOrderFieldsIsCorrect(readLine)) {
             switch (readLine) {
+                case "b":
+                    OperationDispatcher.getInstance().buyGoods(shopArrayList,basketArrayList);
+                    break;
                 case "c":
-                    OperationDispatcher.getInstance().createRecord(homeAccountingArrayList);
+                    OperationDispatcher.getInstance().createRecord(shopArrayList);
                     break;
                 case "r":
-                    OperationDispatcher.getInstance().readRecord(homeAccountingArrayList);
+                    OperationDispatcher.getInstance().readRecord(shopArrayList,basketArrayList);
                     break;
                 case "u":
-                    OperationDispatcher.getInstance().updateForIdRecord(homeAccountingArrayList);
+                    OperationDispatcher.getInstance().updateForIdRecord(shopArrayList);
                     break;
                 case "d":
-                    OperationDispatcher.getInstance().deleteForIdRecord(homeAccountingArrayList);
+                    OperationDispatcher.getInstance().deleteForIdRecord(shopArrayList,basketArrayList);
                     break;
             }
         } else {
-            System.out.println("Неверный запрос. Пример: \n c - создать запись, r - просмотреть список, u - " +
-                    "обновить запись, d - удалить запись");
+            System.out.println("Неверный запрос. Пример: \n b - купить товар, r - просмотреть список товаров,с - добавить товар, u - " +
+                    "обновить информацию о товаре, d - удалить товар");
         }
-        return homeAccountingArrayList;
     }
 
     private static boolean checkOrderFieldsIsCorrect(String readLine) {
         boolean isCorrect = false;
-        if (readLine.equals("c") || readLine.equals("r")|| readLine.equals("u")|| readLine.equals("d")) isCorrect = true;
+        if (readLine.equals("c") || readLine.equals("b")|| readLine.equals("r") || readLine.equals("u")|| readLine.equals("d")) isCorrect = true;
         return isCorrect;
     }
 }

@@ -11,14 +11,16 @@ import java.util.ArrayList;
 public class main {
     public static void main(String[] args) throws IOException {
         ArrayList<GoodsStock> shopGoodsStockArray = Initialization.getInstance().initShopGoodsStockArray();
-        ArrayList<GoodsStock> buyerGoodsStockArray = Initialization.getInstance().initBuyerGoodsStockArray();
-        for (int i = 0; i < shopGoodsStockArray.size(); i++) {
+        ArrayList<GoodsStock> basketGoodsStockArray = Initialization.getInstance().initBasketGoodsStockArray();
+
+
+/*        for (int i = 0; i < shopGoodsStockArray.size(); i++) {
             System.out.println(shopGoodsStockArray.get(i));
-        }
+        }*/
         while (true) {
-            System.out.println("Введите запрос. Пример: \nc - создать запись, r - просмотреть список, u - " +
-                    "обновить запись, d - удалить запись");
-            StringReader.getInstance().orderRead(shopGoodsStockArray);
+            System.out.println("Введите запрос. Пример: \nb - купить товар, r - просмотреть список товаров,с - добавить " +
+                    "товар, u - обновить информацию о товаре, d - удалить товар");
+            StringReader.getInstance().orderRead(shopGoodsStockArray, basketGoodsStockArray);
         }
     }
 }
