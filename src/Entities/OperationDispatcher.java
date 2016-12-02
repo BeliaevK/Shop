@@ -112,11 +112,11 @@ public class OperationDispatcher {
         int recordField = Integer.parseInt(ConsoleDispatcher.readLine());
         for (int i = 0; i < goodsStockArrayList.size(); i++) {
             if (recordField == goodsStockArrayList.get(i).getId()) {
-                System.out.println("Введите: Наименование | Тип | Категория");
+                System.out.println("Введите: Наименование | Тип | Категория | Цена");
                 String[] updateField = ConsoleDispatcher.readLine().split("\\|");
                 if (checkStringUpdateFieldsIsCorrect(updateField)) {
-                    goodsStockArrayList.add(new GoodsStock(IdGenerator.nextId(), updateField[0], GoodsStock.TypeGoods.valueOf(updateField[1]),
-                            GoodsStock.CategoriesGoods.valueOf(updateField[2]), goodsStockArrayList.get(i).getSum()));
+                    goodsStockArrayList.set(i, new GoodsStock(goodsStockArrayList.get(i).getId(), updateField[0], GoodsStock.TypeGoods.valueOf(updateField[1]),
+                            GoodsStock.CategoriesGoods.valueOf(updateField[2]), Integer.parseInt(updateField[3])));
                 }
             }
         }
@@ -125,7 +125,7 @@ public class OperationDispatcher {
 
     private static boolean checkStringUpdateFieldsIsCorrect(String[] readLine) {
         boolean isCorrect = false;
-        if (!readLine[0].equals("") | !readLine[1].equals("") | !readLine[2].equals("")) isCorrect = true;
+        if (!readLine[0].equals("") || !readLine[1].equals("") || !readLine[2].equals("")|| !readLine[3].equals("")) isCorrect = true;
         return isCorrect;
     }
 
