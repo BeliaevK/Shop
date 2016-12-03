@@ -12,8 +12,6 @@ public class main {
     public static void main(String[] args) throws IOException {
         ArrayList<GoodsStock> shopGoodsStockArray = Initialization.getInstance().initShopGoodsStockArray();
         ArrayList<GoodsStock> basketGoodsStockArray = Initialization.getInstance().initBasketGoodsStockArray();
-
-
 /*        for (int i = 0; i < shopGoodsStockArray.size(); i++) {
             System.out.println(shopGoodsStockArray.get(i));
         }*/

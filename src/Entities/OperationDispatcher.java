@@ -42,20 +42,24 @@ public class OperationDispatcher {
                 switch (recordField) {
                     case "shop":
                         for (int i = 0; i < shopArrayList.size(); i++) {
-                            if (id == shopArrayList.get(i).getId())
+                            if (id == shopArrayList.get(i).getId()) {
+                                ConsoleDispatcher.sendMessage(Messages.MSG_DELETE_FROM_SHOP + shopArrayList.get(i));
                                 shopArrayList.remove(i);
+                            }
                         }
                         break;
                     case "basket":
                         for (int i = 0; i < basketArrayList.size(); i++) {
-                            if (id == basketArrayList.get(i).getId())
+                            if (id == basketArrayList.get(i).getId()) {
+                                ConsoleDispatcher.sendMessage(Messages.MSG_DELETE_FROM_BASKET + shopArrayList.get(i));
                                 shopArrayList.add(basketArrayList.get(i));
-                            basketArrayList.remove(i);
+                                basketArrayList.remove(i);
+                            }
                         }
                         break;
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                System.out.println("Неверный идентификатор");
+                ConsoleDispatcher.sendMessage(Messages.MSG_WRONG_ID);
             }
         }
     }
@@ -140,7 +144,7 @@ public class OperationDispatcher {
                 }
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            System.out.println("Неверный идентификатор");
+            ConsoleDispatcher.sendMessage(Messages.MSG_WRONG_ID);
         }
     }
 }

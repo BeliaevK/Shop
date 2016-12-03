@@ -5,5 +5,8 @@ package Entities;
  */
 public class Messages {
     public static final String MSG_REQUEST_PRODUCT_INFO = "Создание записи: Наименование | Тип | Категория | Цена";
+    public static final String MSG_DELETE_FROM_SHOP = "Товар удаленный из магазина: ";
+    public static final String MSG_DELETE_FROM_BASKET = "Товар удаленный из корзины: ";
+    public static final String MSG_WRONG_ID = "Неверный идентификатор";
 
 }
