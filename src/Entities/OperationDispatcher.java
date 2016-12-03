@@ -139,6 +139,7 @@ public class OperationDispatcher {
             int id = Integer.parseInt(ConsoleDispatcher.readLine());
             for (int i = 0; i < shopArrayList.size(); i++) {
                 if (id == shopArrayList.get(i).getId()) {
+                    ConsoleDispatcher.sendMessage(Messages.MSG_BUY_FROM_BASKET + shopArrayList.get(i));
                     basketArrayList.add(shopArrayList.get(i));
                     shopArrayList.remove(i);
                 }
