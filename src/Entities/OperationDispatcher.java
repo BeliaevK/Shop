@@ -51,7 +51,7 @@ public class OperationDispatcher {
                     case "basket":
                         for (int i = 0; i < basketArrayList.size(); i++) {
                             if (id == basketArrayList.get(i).getId()) {
-                                ConsoleDispatcher.sendMessage(Messages.MSG_DELETE_FROM_BASKET + shopArrayList.get(i));
+                                ConsoleDispatcher.sendMessage(Messages.MSG_DELETE_FROM_BASKET + basketArrayList.get(i));
                                 shopArrayList.add(basketArrayList.get(i));
                                 basketArrayList.remove(i);
                             }
@@ -146,6 +146,35 @@ public class OperationDispatcher {
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ConsoleDispatcher.sendMessage(Messages.MSG_WRONG_ID);
+        }
+    }
+
+    public void viewImage (ArrayList<GoodsStock> shopArrayList, ArrayList<GoodsStock> basketArrayList) throws IOException {
+        System.out.println("Просмотр товара: shop - в магазине, basket - из корзины");
+        String recordField = ConsoleDispatcher.readLine();
+        if (checkStringFieldsIsCorrect(recordField)) {
+            System.out.println("Укажите идентификатор записи для просмотра товара");
+            try {
+                int id = Integer.parseInt(ConsoleDispatcher.readLine());
+                switch (recordField) {
+                    case "shop":
+                        for (int i = 0; i < shopArrayList.size(); i++) {
+                            if (id == shopArrayList.get(i).getId()) {
+                                Process process = new ProcessBuilder("mspaint", shopArrayList.get(i).getId() + ".jpg").start();
+                            }
+                        }
+                        break;
+                    case "basket":
+                        for (int i = 0; i < basketArrayList.size(); i++) {
+                            if (id == basketArrayList.get(i).getId()) {
+                                Process process = new ProcessBuilder("mspaint", basketArrayList.get(i).getId() + ".jpg").start();
+                            }
+                        }
+                        break;
+                }
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                ConsoleDispatcher.sendMessage(Messages.MSG_WRONG_ID);
+            }
         }
     }
 }

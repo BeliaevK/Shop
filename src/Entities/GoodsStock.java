@@ -1,11 +1,12 @@
 package Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Scala on 20.11.2016.
  */
-public class GoodsStock {
+public class GoodsStock implements Serializable {
     private int id;
     private String name;
     private TypeGoods typeGoods;

@@ -39,16 +39,19 @@ public class StringReader {
                 case "d":
                     OperationDispatcher.getInstance().deleteForIdRecord(shopArrayList,basketArrayList);
                     break;
+                case "i":
+                    OperationDispatcher.getInstance().viewImage(shopArrayList,basketArrayList);
+                    break;
             }
         } else {
-            System.out.println("Неверный запрос. Пример: \n b - купить товар, r - просмотреть список товаров,с - добавить товар, u - " +
-                    "обновить информацию о товаре, d - удалить товар");
+            System.out.println("Неверный запрос. Пример: \n b - купить товар, r - просмотреть список товаров,с - добавить товар u - " +
+                    "обновить информацию о товаре, d - удалить товар, i - просмотреть товар.");
         }
     }
 
     private static boolean checkOrderFieldsIsCorrect(String readLine) {
         boolean isCorrect = false;
-        if (readLine.equals("c") || readLine.equals("b")|| readLine.equals("r") || readLine.equals("u")|| readLine.equals("d")) isCorrect = true;
+        if (readLine.equals("c") || readLine.equals("b")|| readLine.equals("r") || readLine.equals("u") || readLine.equals("d") || readLine.equals("i")) isCorrect = true;
         return isCorrect;
     }
 }
