@@ -160,14 +160,14 @@ public class OperationDispatcher {
                     case "shop":
                         for (int i = 0; i < shopArrayList.size(); i++) {
                             if (id == shopArrayList.get(i).getId()) {
-                                Process process = new ProcessBuilder("mspaint", shopArrayList.get(i).getId() + ".jpg").start();
+                            new ProcessBuilder("mspaint",  "src\\tmp\\" + shopArrayList.get(i).getId() + ".jpg").start();
                             }
                         }
                         break;
                     case "basket":
                         for (int i = 0; i < basketArrayList.size(); i++) {
                             if (id == basketArrayList.get(i).getId()) {
-                                Process process = new ProcessBuilder("mspaint", basketArrayList.get(i).getId() + ".jpg").start();
+                            new ProcessBuilder("mspaint", "src\\tmp\\" + basketArrayList.get(i).getId() + ".jpg").start();
                             }
                         }
                         break;
