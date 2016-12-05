@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        String basket = "basket.txt";
+        String basket = "src\\tmp\\basket.txt";
         ArrayList<GoodsStock> shopGoodsStockArray = Initialization.getInstance().initShopGoodsStockArray();
         ArrayList<GoodsStock> basketGoodsStockArray = Serial.readFile(basket);
 /*        for (int i = 0; i < shopGoodsStockArray.size(); i++) {
